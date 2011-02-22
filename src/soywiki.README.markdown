@@ -73,9 +73,6 @@ If you run into any PATH errors, try the following: Install the RVM
 Version Manager, then install Ruby 1.9.2 through RVM, and then run `gem
 install soywiki`.  This should solve any installation issues.
 
-
-
-
 If you ever want to uninstall SoyWiki from your system, execute this command:
 
     gem uninstall soywiki
