@@ -3,9 +3,15 @@ require 'liquid'
 
 module Webpage
   def self.generate(project, version)
-    screenshots = RDiscount.new(File.read("src/#{project}.screenshots")).to_html
+
+    screenshots = if File.exist? "src/#{project}.screenshots" 
+                    RDiscount.new(File.read("src/#{project}.screenshots")).to_html 
+                  else
+                    '' 
+                  end
     readme = File.expand_path("src/#{project}.README.markdown", File.dirname(__FILE__))
     raise "No README at #{readme}" unless File.size?(readme)
+    # don't really need to do this? Github can display images
     md = File.read(readme).sub(/^\[screenshots\]/, screenshots)
     content = RDiscount.new(md).to_html
     template = File.read("template.html")
