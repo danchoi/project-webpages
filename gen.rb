@@ -13,9 +13,15 @@ module Webpage
     raise "No README at #{readme}" unless File.size?(readme)
     # don't really need to do this? Github can display images
     md = File.read(readme).sub(/^\[screenshots\]/, screenshots)
+
+    coverage = if File.exist? "src/#{project}.coverage.markdown" 
+                 "<h4>coverage</h4>" + RDiscount.new(File.read("src/#{project}.coverage.markdown")).to_html 
+               else
+                 '' 
+               end
     content = RDiscount.new(md).to_html
     template = File.read("template.html")
-    out = Liquid::Template.parse(template).render 'content' => content, 'timestamp' => Time.now.to_i, 'project' => project, 'version' => version
+    out = Liquid::Template.parse(template).render 'content' => content, 'timestamp' => Time.now.to_i, 'project' => project, 'version' => version, 'coverage' => coverage
   end
 end
 
