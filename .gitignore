@@ -1,2 +1,4 @@
 out/*.html
 src/*.README.markdown
+src/*.coverage.markdown
+
