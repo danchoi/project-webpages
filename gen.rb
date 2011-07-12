@@ -21,7 +21,8 @@ module Webpage
                end
     content = RDiscount.new(md).to_html
     template = File.read("template.html")
-    out = Liquid::Template.parse(template).render 'content' => content, 'timestamp' => Time.now.to_i, 'project' => project, 'version' => version, 'coverage' => coverage
+    out = Liquid::Template.parse(template).render 'content' => content, 'timestamp' => Time.now.to_i, 'project' => project, 'version' => version, 'coverage' => coverage, 'gem' => (md[/gem install (\S+)/,1] || project)
+
   end
 end
 
