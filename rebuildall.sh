@@ -1,3 +1,5 @@
+cd ~/p/firelinks
+rake web
 cd ~/p/hulu_automuter
 rake web
 cd ~/p/vmail
