@@ -10,6 +10,13 @@ module Webpage
                     '' 
                   end
     readme = File.expand_path("src/#{project}.README.markdown", File.dirname(__FILE__))
+
+
+    links_path = "src/#{project}.links.markdown"
+    links_html = if File.exist? links_path 
+                   RDiscount.new(File.read(links_path)).to_html 
+                 end
+
     raise "No README at #{readme}" unless File.size?(readme)
     # don't really need to do this? Github can display images
     md = File.read(readme).sub(/^\[screenshots\]/, screenshots)
@@ -27,7 +34,9 @@ module Webpage
     else
       (md[/gem install (\S+)/,1] || project)
     end
-    out = Liquid::Template.parse(template).render 'content' => content, 'timestamp' => Time.now.to_i, 'title' => title, 'project' => project, 'version' => version, 'coverage' => coverage, 'gem' => gem
+
+
+    out = Liquid::Template.parse(template).render 'content' => content, 'timestamp' => Time.now.to_i, 'title' => title, 'project' => project, 'version' => version, 'coverage' => coverage, 'gem' => gem, 'links_html' => links_html
 
   end
 end

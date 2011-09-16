@@ -33,16 +33,22 @@
             </ul>
 
             <h4>links</h4>
-            <ul>
-              <li><a href="https://github.com/danchoi/{{project}}">github repo</a></li>
-              {% if gem %}
-              <li><a href="https://rubygems.org/gems/{{gem}}">rubygems page</a></li>
-              {% endif %}
-              <li><a href="https://github.com/danchoi/{{project}}/issues">issue tracker</a></li>
-              <li><a href="https://github.com/danchoi/{{project}}/commits/master">commit history</a></li>
-              <li><a href="http://groups.google.com/group/{{project}}-users?msg=new&lnk=gcis">google group</a></li>
-              <li><a href="https://github.com/danchoi/{{project}}/wiki">wiki</a></li>
-            </ul>
+            {% if links_html %}
+              {{links_html}}
+            {% else %}
+
+              <ul>
+                <li><a href="https://github.com/danchoi/{{project}}">github repo</a></li>
+                {% if gem %}
+                <li><a href="https://rubygems.org/gems/{{gem}}">rubygems page</a></li>
+                {% endif %}
+                <li><a href="https://github.com/danchoi/{{project}}/issues">issue tracker</a></li>
+                <li><a href="https://github.com/danchoi/{{project}}/commits/master">commit history</a></li>
+                <li><a href="http://groups.google.com/group/{{project}}-users?msg=new&lnk=gcis">google group</a></li>
+                <li><a href="https://github.com/danchoi/{{project}}/wiki">wiki</a></li>
+              </ul>
+
+            {% endif %}
 
             {{coverage}}
 
@@ -60,7 +66,6 @@
             <div class="also-by">
               <h4>by this developer</h4>
               <ul class="cross-promo">
-                <li><a href="http://danielchoi.com/software/firelinks.html">Firelinks<a/></li>
                 <li><a href="http://danielchoi.com/software/hush.html">Hush<a/></li>
                 <li><a href="http://danielchoi.com/software/vitunes.html">ViTunes<a/></li>
                 <li><a href="http://danielchoi.com/software/hulu_automuter.html">Hulu Automuter (Linux)<a/></li>
@@ -74,6 +79,7 @@
                 <li><a href="http://danielchoi.com/software/soywiki.html">SoyWiki<a/></li>
                 <li><a href="http://github.com/danchoi/twail">twail<a/></li>
                 <li><a href="http://github.com/danchoi/twim">twim<a/></li>
+                <li><a href="http://danielchoi.com/software/firelinks.html">Firelinks<a/></li>
               </ul>
             </div>
 
